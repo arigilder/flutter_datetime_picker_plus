@@ -163,7 +163,7 @@ class DatePicker {
         onChanged: onChanged,
         onConfirm: onConfirm,
         onCancel: onCancel,
-        DatePickerFormat? datePickerFormat,
+        datePickerFormat: datePickerFormat,
         locale: locale,
         theme: theme,
         barrierLabel:
@@ -187,6 +187,7 @@ class DatePicker {
     DateChangedCallback? onChanged,
     DateChangedCallback? onConfirm,
     DateCancelledCallback? onCancel,
+    DatePickerFormat? datePickerFormat,
     locale = LocaleType.en,
     BasePickerModel? pickerModel,
     picker_theme.DatePickerTheme? theme,
@@ -229,7 +230,8 @@ class _DatePickerRoute<T> extends PopupRoute<T> {
   final DateChangedCallback? onChanged;
   final DateChangedCallback? onConfirm;
   final DateCancelledCallback? onCancel;
-    /// Customize design of date picker
+
+  /// Customize design of date picker
   final DatePickerFormat? datePickerFormat;
   final LocaleType? locale;
   final picker_theme.DatePickerTheme theme;
@@ -289,7 +291,7 @@ class _DatePickerComponent extends StatefulWidget {
 
   /// Date picker format
   final DatePickerFormat datePickerFormat;
-  
+
   final _DatePickerRoute route;
 
   final LocaleType? locale;
@@ -429,7 +431,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
     );
   }
 
-  Widget _renderItemView(DatePickerTheme theme,
+  Widget _renderItemView(picker_theme.DatePickerTheme theme,
       {required DatePickerFormat datePickerFormat}) {
     return Container(
       color: theme.backgroundColor,
@@ -440,8 +442,8 @@ class _DatePickerState extends State<_DatePickerComponent> {
     );
   }
 
-    Row _buildDatePickerFormat(
-      DatePickerFormat datePickerFormat, DatePickerTheme theme) {
+  Row _buildDatePickerFormat(
+      DatePickerFormat datePickerFormat, picker_theme.DatePickerTheme theme) {
     switch (datePickerFormat) {
       case DatePickerFormat.yyyy_mm_dd:
         return _buildDatePickerWithYYYYMMDDFormat(theme);
@@ -454,7 +456,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
     }
   }
 
-  Row _buildDatePickerWithYYYYMMDDFormat(DatePickerTheme theme) {
+  Row _buildDatePickerWithYYYYMMDDFormat(picker_theme.DatePickerTheme theme) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -473,7 +475,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
     );
   }
 
-  Row _buildDatePickerWithMMDDYYYYFormat(DatePickerTheme theme) {
+  Row _buildDatePickerWithMMDDYYYYFormat(picker_theme.DatePickerTheme theme) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -493,7 +495,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
   }
 
   //// Build date picker with DD-MM-YYYY
-  Row _buildDatePickerWithDDMMYYYYFormat(DatePickerTheme theme) {
+  Row _buildDatePickerWithDDMMYYYYFormat(picker_theme.DatePickerTheme theme) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -512,7 +514,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
     );
   }
 
-  Container _buildYear(DatePickerTheme theme) {
+  Container _buildYear(picker_theme.DatePickerTheme theme) {
     return Container(
       child: widget.pickerModel.layoutProportions()[0] > 0
           ? _renderColumnView(
@@ -532,7 +534,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
     );
   }
 
-  Container _buildMonth(DatePickerTheme theme) {
+  Container _buildMonth(picker_theme.DatePickerTheme theme) {
     return Container(
       child: widget.pickerModel.layoutProportions()[1] > 0
           ? _renderColumnView(
@@ -552,7 +554,7 @@ class _DatePickerState extends State<_DatePickerComponent> {
     );
   }
 
-  Container _buildDay(DatePickerTheme theme) {
+  Container _buildDay(picker_theme.DatePickerTheme theme) {
     return Container(
       child: widget.pickerModel.layoutProportions()[2] > 0
           ? _renderColumnView(
